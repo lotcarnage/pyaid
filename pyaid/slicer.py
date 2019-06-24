@@ -1,6 +1,6 @@
 from __future__ import division
 
-class slicer:
+class Slicer:
     def __init__(self, array_like, stride=1, width=1, eatup=True):
         self.array_like = array_like
         self.stride = stride
@@ -52,10 +52,10 @@ if __name__ == "__main__":
     import unittest
     class TestSlicer(unittest.TestCase):
         def test_length(self):
-            self.assertEqual(len(slicer([0,1,2,3,4], 2, 3)), 3)
-            self.assertEqual(len(slicer([0,1,2,3,4], 2, 3, False)), 2)
+            self.assertEqual(len(Slicer([0,1,2,3,4], 2, 3)), 3)
+            self.assertEqual(len(Slicer([0,1,2,3,4], 2, 3, False)), 2)
         def test_indexing(self):
-            instance = slicer([0,1,2,3,4], 2, 3)
+            instance = Slicer([0,1,2,3,4], 2, 3)
             self.assertEqual(instance[0], [0,1,2])
             self.assertEqual(instance[1], [2,3,4])
             self.assertEqual(instance[2], [4])
@@ -67,7 +67,7 @@ if __name__ == "__main__":
             with self.assertRaises(KeyError):
                 instance["a"]
         def test_slice_indexing(self):
-            instance = slicer([0,1,2,3,4], 2, 3)
+            instance = Slicer([0,1,2,3,4], 2, 3)
             self.assertEqual(instance[0:1], [[0,1,2]])
             self.assertEqual(instance[:1], [[0,1,2]])
             self.assertEqual(instance[2:3], [[4]])
@@ -76,7 +76,7 @@ if __name__ == "__main__":
             with self.assertRaises(ValueError):
                 instance[0:1:0]
         def test_iteration(self):
-            instance = slicer([0,1,2,3,4], 2, 3)
+            instance = Slicer([0,1,2,3,4], 2, 3)
             self.assertEqual(len(instance), 3)
             self.assertEqual(instance.__next__(), [0,1,2])
             self.assertEqual(len(instance), 2)
